@@ -1,0 +1,29 @@
+﻿body
+{
+    
+}
+#api_info .info_title{
+    font-family: monospace;
+    font-size: 30pt;
+}
+
+.logo__title {
+    padding-left: 32px !important;
+}
+
+.logo__img {
+    display: none !important;
+}
+
+#api_info .info_title:after {
+    content: " ";
+    display: block; 
+    background-size: 100% 100%;
+    height: 192px;
+    width: 200px;
+    background-image: url(/content/pepe-robot.png);
+}
+
+.swagger-section #header #logo {
+    background: transparent url(/content/pepe30.png) no-repeat left center;
+}

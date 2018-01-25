@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MarvinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="attachment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="essence_Id" Type="int" Nullable="false" />
+          <Property Name="path" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="attachmentType" Type="int" Nullable="false" />
+          <Property Name="arguments" Type="ntext" />
+        </EntityType>
+        <EntityType Name="command">
+          <Key>
+            <PropertyRef Name="type" />
+            <PropertyRef Name="urn" />
+          </Key>
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="urn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="essence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="path" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="stateFormat" Type="int" Nullable="false" />
+          <Property Name="stateFlag" Type="int" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="aspectratio" Type="int" Nullable="false" />
+          <Property Name="customFormat" Type="nvarchar" MaxLength="50" />
+          <Property Name="resolution" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="essenceFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="essence_Id" Type="int" Nullable="false" />
+          <Property Name="sortOrder" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="kind" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="execution_essence">
+          <Key>
+            <PropertyRef Name="essence_Id" />
+            <PropertyRef Name="executiontask_Id" />
+          </Key>
+          <Property Name="essence_Id" Type="int" Nullable="false" />
+          <Property Name="executiontask_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="executionEssenceType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="executionPlan">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="urn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="executionState" Type="int" Nullable="false" />
+          <Property Name="currentEssence_Id" Type="int" />
+          <Property Name="jobId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="activeTaskIndex" Type="int" />
+        </EntityType>
+        <EntityType Name="executiontask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="urn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="startTime" Type="datetime" />
+          <Property Name="endTime" Type="datetime" />
+          <Property Name="estimation" Type="bigint" Nullable="false" />
+          <Property Name="executionState" Type="int" Nullable="false" />
+          <Property Name="pluginUrn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="executionPlan_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sortOrder" Type="int" Nullable="false" />
+          <Property Name="foreignKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="arguments" Type="ntext" />
+          <Property Name="numberOfRetries" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="healthCounter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="message" Type="nvarchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="urn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="issued" Type="datetime" Nullable="false" />
+          <Property Name="dueDate" Type="datetime" Nullable="false" />
+          <Property Name="priority" Type="int" Nullable="false" />
+          <Property Name="endTime" Type="datetime" />
+          <Property Name="created" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="callbackUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="sourceUrn" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="job_essence">
+          <Key>
+            <PropertyRef Name="job_Id" />
+            <PropertyRef Name="essence_Id" />
+          </Key>
+          <Property Name="job_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="jobEssenceType" Type="int" Nullable="false" />
+          <Property Name="essence_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semaphore">
+          <Key>
+            <PropertyRef Name="semaphoreId" />
+          </Key>
+          <Property Name="semaphoreId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="currentOwnerId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="heartBeat" Type="datetime" Nullable="false" />
+          <Property Name="rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_attachment_essence">
+          <End Role="essence" Type="Self.essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="attachment" Type="Self.attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="attachment">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_execution_essence_essence1">
+          <End Role="essence" Type="Self.essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="execution_essence" Type="Self.execution_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="execution_essence">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_execution_essence_executiontask1">
+          <End Role="executiontask" Type="Self.executiontask" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="execution_essence" Type="Self.execution_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="executiontask">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="execution_essence">
+              <PropertyRef Name="executiontask_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_executionPlan_job">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="executionPlan" Type="Self.executionPlan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="executionPlan">
+              <PropertyRef Name="jobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_executiontask_executionPlan">
+          <End Role="executionPlan" Type="Self.executionPlan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="executiontask" Type="Self.executiontask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="executionPlan">
+              <PropertyRef Name="jobId" />
+            </Principal>
+            <Dependent Role="executiontask">
+              <PropertyRef Name="executionPlan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fileName_essence1">
+          <End Role="essence" Type="Self.essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="essenceFile" Type="Self.essenceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="essenceFile">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_job_essence_essence1">
+          <End Role="essence" Type="Self.essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_essence" Type="Self.job_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="job_essence">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_job_essence_job">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_essence" Type="Self.job_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="job_essence">
+              <PropertyRef Name="job_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarvinModelStoreContainer">
+          <EntitySet Name="attachment" EntityType="Self.attachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="command" EntityType="Self.command" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="essence" EntityType="Self.essence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="essenceFile" EntityType="Self.essenceFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="execution_essence" EntityType="Self.execution_essence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="executionPlan" EntityType="Self.executionPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="executiontask" EntityType="Self.executiontask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="healthCounter" EntityType="Self.healthCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job_essence" EntityType="Self.job_essence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semaphore" EntityType="Self.semaphore" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_attachment_essence" Association="Self.FK_attachment_essence">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="attachment" EntitySet="attachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_execution_essence_essence1" Association="Self.FK_execution_essence_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="execution_essence" EntitySet="execution_essence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_execution_essence_executiontask1" Association="Self.FK_execution_essence_executiontask1">
+            <End Role="executiontask" EntitySet="executiontask" />
+            <End Role="execution_essence" EntitySet="execution_essence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_executionPlan_job" Association="Self.FK_executionPlan_job">
+            <End Role="job" EntitySet="job" />
+            <End Role="executionPlan" EntitySet="executionPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_executiontask_executionPlan" Association="Self.FK_executiontask_executionPlan">
+            <End Role="executionPlan" EntitySet="executionPlan" />
+            <End Role="executiontask" EntitySet="executiontask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fileName_essence1" Association="Self.FK_fileName_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="essenceFile" EntitySet="essenceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_job_essence_essence1" Association="Self.FK_job_essence_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="job_essence" EntitySet="job_essence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_job_essence_job" Association="Self.FK_job_essence_job">
+            <End Role="job" EntitySet="job" />
+            <End Role="job_essence" EntitySet="job_essence" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarvinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MarvinEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="attachment" EntityType="MarvinModel.attachment" />
+          <EntitySet Name="essence" EntityType="MarvinModel.essence" />
+          <EntitySet Name="executiontask" EntityType="MarvinModel.executiontask" />
+          <EntitySet Name="job" EntityType="MarvinModel.job" />
+          <AssociationSet Name="FK_attachment_essence" Association="MarvinModel.FK_attachment_essence">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="attachment" EntitySet="attachment" />
+          </AssociationSet>
+          <EntitySet Name="execution_essence" EntityType="MarvinModel.execution_essence" />
+          <AssociationSet Name="FK_execution_essence_essence1" Association="MarvinModel.FK_execution_essence_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="execution_essence" EntitySet="execution_essence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_execution_essence_executiontask1" Association="MarvinModel.FK_execution_essence_executiontask1">
+            <End Role="executiontask" EntitySet="executiontask" />
+            <End Role="execution_essence" EntitySet="execution_essence" />
+          </AssociationSet>
+          <EntitySet Name="job_essence" EntityType="MarvinModel.job_essence" />
+          <AssociationSet Name="FK_job_essence_essence1" Association="MarvinModel.FK_job_essence_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="job_essence" EntitySet="job_essence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_job_essence_job" Association="MarvinModel.FK_job_essence_job">
+            <End Role="job" EntitySet="job" />
+            <End Role="job_essence" EntitySet="job_essence" />
+          </AssociationSet>
+          <EntitySet Name="executionPlan" EntityType="MarvinModel.executionPlan" />
+          <AssociationSet Name="FK_executionPlan_job" Association="MarvinModel.FK_executionPlan_job">
+            <End Role="job" EntitySet="job" />
+            <End Role="executionPlan" EntitySet="executionPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_executiontask_executionPlan" Association="MarvinModel.FK_executiontask_executionPlan">
+            <End Role="executionPlan" EntitySet="executionPlan" />
+            <End Role="executiontask" EntitySet="executiontask" />
+          </AssociationSet>
+          <EntitySet Name="semaphore" EntityType="MarvinModel.semaphore" />
+          <EntitySet Name="essenceFile" EntityType="MarvinModel.essenceFile" />
+          <AssociationSet Name="FK_fileName_essence1" Association="MarvinModel.FK_fileName_essence1">
+            <End Role="essence" EntitySet="essence" />
+            <End Role="essenceFile" EntitySet="essenceFile" />
+          </AssociationSet>
+          <EntitySet Name="command" EntityType="MarvinModel.command" />
+          <EntitySet Name="healthCounter" EntityType="MarvinModel.healthCounter" />
+        </EntityContainer>
+        <EntityType Name="attachment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="essence_Id" Type="Int32" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attachmentType" Type="Int32" Nullable="false" />
+          <Property Name="arguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="essence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="path" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stateFormat" Type="Int32" Nullable="false" />
+          <Property Name="stateFlag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="attachment" Relationship="MarvinModel.FK_attachment_essence" FromRole="essence" ToRole="attachment" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="aspectratio" Type="Int32" Nullable="false" />
+          <Property Name="customFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="essenceFile" Relationship="MarvinModel.FK_fileName_essence1" FromRole="essence" ToRole="essenceFile" />
+          <Property Name="resolution" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="executiontask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="urn" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="startTime" Type="DateTime" Precision="3" />
+          <Property Name="endTime" Type="DateTime" Precision="3" />
+          <Property Name="estimation" Type="Int64" Nullable="false" />
+          <Property Name="executionState" Type="Int32" Nullable="false" />
+          <Property Name="pluginUrn" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="executionPlan_Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="execution_essence" Relationship="MarvinModel.FK_execution_essence_executiontask1" FromRole="executiontask" ToRole="execution_essence" />
+          <Property Name="foreignKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="sortOrder" Type="Int32" Nullable="false" />
+          <Property Name="arguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="numberOfRetries" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="urn" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="issued" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="priority" Type="Int32" Nullable="false" />
+          <Property Name="endTime" Type="DateTime" Precision="3" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="None" />
+          <Property Name="callbackUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="job_essence" Relationship="MarvinModel.FK_job_essence_job" FromRole="job" ToRole="job_essence" />
+          <NavigationProperty Name="executionPlan" Relationship="MarvinModel.FK_executionPlan_job" FromRole="job" ToRole="executionPlan" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="sourceUrn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_attachment_essence">
+          <End Type="MarvinModel.essence" Role="essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.attachment" Role="attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="attachment">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="execution_essence">
+          <Key>
+            <PropertyRef Name="essence_Id" />
+            <PropertyRef Name="executiontask_Id" />
+          </Key>
+          <Property Name="essence_Id" Type="Int32" Nullable="false" />
+          <Property Name="executiontask_Id" Type="Guid" Nullable="false" />
+          <Property Name="executionEssenceType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="essence" Relationship="MarvinModel.FK_execution_essence_essence1" FromRole="execution_essence" ToRole="essence" />
+        </EntityType>
+        <Association Name="FK_execution_essence_essence1">
+          <End Type="MarvinModel.essence" Role="essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.execution_essence" Role="execution_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="execution_essence">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_execution_essence_executiontask1">
+          <End Type="MarvinModel.executiontask" Role="executiontask" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.execution_essence" Role="execution_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="executiontask">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="execution_essence">
+              <PropertyRef Name="executiontask_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="job_essence">
+          <Key>
+            <PropertyRef Name="job_Id" />
+            <PropertyRef Name="essence_Id" />
+          </Key>
+          <Property Name="job_Id" Type="Guid" Nullable="false" />
+          <Property Name="jobEssenceType" Type="Int32" Nullable="false" />
+          <Property Name="essence_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="essence" Relationship="MarvinModel.FK_job_essence_essence1" FromRole="job_essence" ToRole="essence" />
+        </EntityType>
+        <Association Name="FK_job_essence_essence1">
+          <End Type="MarvinModel.essence" Role="essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.job_essence" Role="job_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="job_essence">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_job_essence_job">
+          <End Type="MarvinModel.job" Role="job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.job_essence" Role="job_essence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="job_essence">
+              <PropertyRef Name="job_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="executionPlan">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="urn" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="executionState" Type="Int32" Nullable="false" />
+          <Property Name="currentEssence_Id" Type="Int32" />
+          <Property Name="jobId" Type="Guid" Nullable="false" />
+          <Property Name="activeTaskIndex" Type="Int32" />
+          <NavigationProperty Name="executiontask" Relationship="MarvinModel.FK_executiontask_executionPlan" FromRole="executionPlan" ToRole="executiontask" />
+        </EntityType>
+        <Association Name="FK_executionPlan_job">
+          <End Type="MarvinModel.job" Role="job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.executionPlan" Role="executionPlan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="executionPlan">
+              <PropertyRef Name="jobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_executiontask_executionPlan">
+          <End Type="MarvinModel.executionPlan" Role="executionPlan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.executiontask" Role="executiontask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="executionPlan">
+              <PropertyRef Name="jobId" />
+            </Principal>
+            <Dependent Role="executiontask">
+              <PropertyRef Name="executionPlan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="semaphore">
+          <Key>
+            <PropertyRef Name="semaphoreId" />
+          </Key>
+          <Property Name="semaphoreId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currentOwnerId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="heartBeat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rowversion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+        </EntityType>
+        <EntityType Name="essenceFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="essence_Id" Type="Int32" Nullable="false" />
+          <Property Name="sortOrder" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="kind" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fileName_essence1">
+          <End Type="MarvinModel.essence" Role="essence" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MarvinModel.essenceFile" Role="essenceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="essence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="essenceFile">
+              <PropertyRef Name="essence_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="command">
+          <Key>
+            <PropertyRef Name="urn" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="urn" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="healthCounter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarvinModelStoreContainer" CdmEntityContainer="MarvinEntities">
+          <EntitySetMapping Name="attachment">
+            <EntityTypeMapping TypeName="MarvinModel.attachment">
+              <MappingFragment StoreEntitySet="attachment">
+                <ScalarProperty Name="arguments" ColumnName="arguments" />
+                <ScalarProperty Name="attachmentType" ColumnName="attachmentType" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="essence_Id" ColumnName="essence_Id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="essence">
+            <EntityTypeMapping TypeName="MarvinModel.essence">
+              <MappingFragment StoreEntitySet="essence">
+                <ScalarProperty Name="resolution" ColumnName="resolution" />
+                <ScalarProperty Name="customFormat" ColumnName="customFormat" />
+                <ScalarProperty Name="aspectratio" ColumnName="aspectratio" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="stateFlag" ColumnName="stateFlag" />
+                <ScalarProperty Name="stateFormat" ColumnName="stateFormat" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="executiontask">
+            <EntityTypeMapping TypeName="MarvinModel.executiontask">
+              <MappingFragment StoreEntitySet="executiontask">
+                <ScalarProperty Name="numberOfRetries" ColumnName="numberOfRetries" />
+                <ScalarProperty Name="arguments" ColumnName="arguments" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+                <ScalarProperty Name="foreignKey" ColumnName="foreignKey" />
+                <ScalarProperty Name="executionPlan_Id" ColumnName="executionPlan_Id" />
+                <ScalarProperty Name="pluginUrn" ColumnName="pluginUrn" />
+                <ScalarProperty Name="executionState" ColumnName="executionState" />
+                <ScalarProperty Name="estimation" ColumnName="estimation" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="urn" ColumnName="urn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job">
+            <EntityTypeMapping TypeName="MarvinModel.job">
+              <MappingFragment StoreEntitySet="job">
+                <ScalarProperty Name="sourceUrn" ColumnName="sourceUrn" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="callbackUrl" ColumnName="callbackUrl" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+                <ScalarProperty Name="issued" ColumnName="issued" />
+                <ScalarProperty Name="urn" ColumnName="urn" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="execution_essence">
+            <EntityTypeMapping TypeName="MarvinModel.execution_essence">
+              <MappingFragment StoreEntitySet="execution_essence">
+                <ScalarProperty Name="executionEssenceType" ColumnName="executionEssenceType" />
+                <ScalarProperty Name="executiontask_Id" ColumnName="executiontask_Id" />
+                <ScalarProperty Name="essence_Id" ColumnName="essence_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_essence">
+            <EntityTypeMapping TypeName="MarvinModel.job_essence">
+              <MappingFragment StoreEntitySet="job_essence">
+                <ScalarProperty Name="essence_Id" ColumnName="essence_Id" />
+                <ScalarProperty Name="jobEssenceType" ColumnName="jobEssenceType" />
+                <ScalarProperty Name="job_Id" ColumnName="job_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="executionPlan">
+            <EntityTypeMapping TypeName="MarvinModel.executionPlan">
+              <MappingFragment StoreEntitySet="executionPlan">
+                <ScalarProperty Name="activeTaskIndex" ColumnName="activeTaskIndex" />
+                <ScalarProperty Name="jobId" ColumnName="jobId" />
+                <ScalarProperty Name="currentEssence_Id" ColumnName="currentEssence_Id" />
+                <ScalarProperty Name="executionState" ColumnName="executionState" />
+                <ScalarProperty Name="urn" ColumnName="urn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semaphore">
+            <EntityTypeMapping TypeName="MarvinModel.semaphore">
+              <MappingFragment StoreEntitySet="semaphore">
+                <ScalarProperty Name="rowversion" ColumnName="rowversion" />
+                <ScalarProperty Name="heartBeat" ColumnName="heartBeat" />
+                <ScalarProperty Name="currentOwnerId" ColumnName="currentOwnerId" />
+                <ScalarProperty Name="semaphoreId" ColumnName="semaphoreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="essenceFile">
+            <EntityTypeMapping TypeName="MarvinModel.essenceFile">
+              <MappingFragment StoreEntitySet="essenceFile">
+                <ScalarProperty Name="kind" ColumnName="kind" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+                <ScalarProperty Name="essence_Id" ColumnName="essence_Id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="command">
+            <EntityTypeMapping TypeName="MarvinModel.command">
+              <MappingFragment StoreEntitySet="command">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="urn" ColumnName="urn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="healthCounter">
+            <EntityTypeMapping TypeName="MarvinModel.healthCounter">
+              <MappingFragment StoreEntitySet="healthCounter">
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

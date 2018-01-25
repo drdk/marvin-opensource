@@ -1,0 +1,183 @@
+﻿{
+  "MachineGroup": "WorkingMachines",
+  "Presets": [
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "hd",
+      "Workflow": "ae317a88-7e75-46fc-a836-ccff717e6b32"
+    },
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "hd",
+      "Workflow": "1f6f93d1-ce0c-46f9-9856-44543bcebb97"
+    },
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "78447d9a-29d4-47fc-888e-d550abbc0817"
+    },
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "4b55bc13-bca2-4a6f-8058-54d9c67a8c7f"
+    },
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "a9d495a1-12a0-4a20-9915-316312b7cdd2"
+    },
+    {
+      "Format": "h264_od_dropfolder",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "c74f3eb8-89f7-406c-9f92-fb1f693f9631"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "hd",
+      "Workflow": "26d622bc-c5d7-464a-8ba2-bc994e6c30a1"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "hd",
+      "Workflow": "937fc0a9-04df-479c-8dbe-d7cc7b779e36"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "8bb0c739-8a88-4014-9bad-6009dc5b0fbb"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "75d9a0d6-5748-47a8-8626-96b1eb17fd2c"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "04ccd944-a47e-49f3-b4b0-af303d645511"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "b4b94ff3-abd2-40bf-be0e-0edb79d9bd20"
+    },
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "hd",
+      "Workflow": "e0573702-e110-4ab9-864f-c9042f3c85cd"
+    },
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "hd",
+      "Workflow": "8f62305c-c67e-4e9e-a2c3-04b258601836"
+    },
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "bd34e8d6-ee68-445a-8876-275fe5d917bd"
+    },
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "49a82ca4-bbd1-4f67-bde2-aedf5cf8c269"
+    },
+
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "891f9a6d-5c0b-4bda-bb42-3403c9ef2040"
+    },
+    {
+      "Format": "h264_od_standard",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "a9177e03-fbc6-4bf2-b891-298444aa13c2"
+    },
+    {
+      "Format": "h264_od_single",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "fullhd",
+      "Workflow": "6945cafa-ab32-46a8-96c5-5af9df62daef"
+    },
+
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "hd",
+      "Workflow": "f9ef396a-8e2d-4e43-9cf6-dc1aed8e899f"
+    },
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "hd",
+      "Workflow": "604a3b7d-8095-4c35-8373-fe61bd27d87b"
+    },
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "62274b43-30c4-44cc-bc52-d42c98d983f6"
+    },
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_16x9",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "c611695f-ad2e-476a-bf18-2ae12f6f33fc"
+    },
+
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": false,
+      "Resolution": "sd",
+      "Workflow": "0e1f0505-541a-4ae7-975e-ccea2cf352b6"
+    },
+    {
+      "Format": "h264_od_podcast",
+      "AspectRatio": "ratio_4x3",
+      "BurnInLogo": true,
+      "Resolution": "sd",
+      "Workflow": "c2d5a80b-e0ff-440d-9e27-9ca559f418de"
+    }
+  ]
+}

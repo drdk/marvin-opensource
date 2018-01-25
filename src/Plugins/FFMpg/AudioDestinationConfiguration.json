@@ -1,0 +1,33 @@
+﻿{
+  "Presets": [
+    {
+      "Format": "audio_od_standard",
+      "AudioDestinationsList": [
+        {
+          "AudioCodec": "MP3",
+          "Format": "MP3",
+          "Bitrate": "64",
+          "Channels": "Mono"
+        },
+        {
+          "AudioCodec": "MP3",
+          "Format": "MP3",
+          "Bitrate": "192",
+          "Channels": "Stereo"
+        },
+        {
+          "AudioCodec": "AAC",
+          "Format": "MP4",
+          "Bitrate": "64",
+          "Channels": "Mono"
+        },
+        {
+          "AudioCodec": "AAC",
+          "Format": "MP4",
+          "Bitrate": "192",
+          "Channels": "Stereo"
+        }
+      ]
+    }
+  ]
+}

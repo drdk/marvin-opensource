@@ -1,97 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43FDBC81-7401-459B-9CBD-A250A030ABE9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DR.Marvin.Planner.Test</RootNamespace>
+    <TargetFramework>net461</TargetFramework>    
+    <Company>DR (Danish Broadcasting Corporation)</Company>
+    <Authors>DR TU</Authors>
+    <Copyright>DR (Danish Broadcasting Corporation)</Copyright>
     <AssemblyName>DR.Marvin.Planner.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile />
+    <RootNamespace>DR.Marvin.Planner.Test</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.5.9.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.9\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Moq" Version="4.8.1" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CommonPlannerTest.cs" />
-    <Compile Include="SimplePlannerTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+
+  <ItemGroup>  
+    <ProjectReference Include="..\Logging\Logging.csproj"/>
+    <ProjectReference Include="..\Model\Model.csproj"/>
+    <ProjectReference Include="..\Planner\Planner.csproj"/>
+    <ProjectReference Include="..\Plugins\Common\Plugins.Common.csproj"/>
+    <ProjectReference Include="..\Plugins\FFMpg\Plugins.FFMpeg.csproj"/>
+    <ProjectReference Include="..\Plugins\FileRenamer\Plugins.FileRenamer.csproj"/>
+    <ProjectReference Include="..\Plugins\Wfs\Plugins.Wfs.csproj"/>
+    <ProjectReference Include="..\Simulator\Simulator.csproj"/>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logging\Logging.csproj">
-      <Project>{08465ca5-00ff-4585-bde1-47e1ad5d194a}</Project>
-      <Name>Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{BEA5E500-2B85-48EF-B094-636C10754360}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planner\Planner.csproj">
-      <Project>{3e08c8e0-5943-4839-b72d-9a1e94312529}</Project>
-      <Name>Planner</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugins\Common\Plugins.Common.csproj">
-      <Project>{49d0543e-f928-4146-a3e0-fdf0525feb7f}</Project>
-      <Name>Plugins.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugins\FFMpg\Plugins.FFMpeg.csproj">
-      <Project>{02497c8b-61fe-4154-83be-380b75fd299e}</Project>
-      <Name>Plugins.FFMpeg</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugins\FileRenamer\Plugins.FileRenamer.csproj">
-      <Project>{d95fbf19-eb4d-421a-9991-21c63dabfdc2}</Project>
-      <Name>Plugins.FileRenamer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugins\Wfs\Plugins.Wfs.csproj">
-      <Project>{52f81f8c-9ddd-4387-8bb7-2d004a4cdf87}</Project>
-      <Name>Plugins.Wfs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Simulator\Simulator.csproj">
-      <Project>{1154ef98-89ce-4709-af04-02aad82c52b6}</Project>
-      <Name>Simulator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

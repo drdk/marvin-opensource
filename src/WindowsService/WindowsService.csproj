@@ -280,7 +280,10 @@
     <Content Include="App_Data\WindowsService.XML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\pepe-robot.png">
+    <Content Include="Content\dr-tu-streaming-30px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\receiver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Assets\Audio\Original\marvin_OFFLINE.wav" />
@@ -289,9 +292,6 @@
     <EmbeddedResource Include="Assets\Audio\Brian\marvin_OFFLINE_brian.wav" />
     <EmbeddedResource Include="Assets\Audio\Brian\marvin_OFFLINE2_brian.wav" />
     <EmbeddedResource Include="Assets\Audio\Original\Marvin_ONLINE.wav" />
-    <Content Include="Content\pepe30.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Content\Marvin.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

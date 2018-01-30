@@ -2,12 +2,11 @@
 
 ALTER DATABASE [MarvinLocal] SET ALLOW_SNAPSHOT_ISOLATION ON 
 GO
-
-/****** Object:  FullTextCatalog [logMessage]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  FullTextCatalog [logMessage]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE FULLTEXT CATALOG [logMessage]WITH ACCENT_SENSITIVITY = ON
 
 GO
-/****** Object:  Table [dbo].[attachment]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[attachment]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,10 +21,10 @@ CREATE TABLE [dbo].[attachment](
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[attachmentType]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[attachmentType]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -40,7 +39,7 @@ CREATE TABLE [dbo].[attachmentType](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[command]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[command]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -57,7 +56,7 @@ CREATE TABLE [dbo].[command](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[commandType]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[commandType]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -72,7 +71,7 @@ CREATE TABLE [dbo].[commandType](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[essence]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[essence]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -93,7 +92,7 @@ CREATE TABLE [dbo].[essence](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[essenceFile]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[essenceFile]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -111,7 +110,7 @@ CREATE TABLE [dbo].[essenceFile](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[essenceFileKind]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[essenceFileKind]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -126,7 +125,7 @@ CREATE TABLE [dbo].[essenceFileKind](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[execution_essence]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[execution_essence]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,7 +142,7 @@ CREATE TABLE [dbo].[execution_essence](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[executionEssenceType]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[executionEssenceType]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -158,7 +157,7 @@ CREATE TABLE [dbo].[executionEssenceType](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[executionPlan]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[executionPlan]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -169,14 +168,14 @@ CREATE TABLE [dbo].[executionPlan](
 	[currentEssence_Id] [int] NULL,
 	[jobId] [uniqueidentifier] NOT NULL,
 	[activeTaskIndex] [int] NULL,
- CONSTRAINT [PK_ExecutionPlan] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_ExecutionPlan_jobid] PRIMARY KEY CLUSTERED 
 (
 	[jobId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[executionState]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[executionState]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -191,7 +190,7 @@ CREATE TABLE [dbo].[executionState](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[executiontask]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[executiontask]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +207,7 @@ CREATE TABLE [dbo].[executiontask](
 	[sortOrder] [int] NOT NULL,
 	[foreignKey] [nvarchar](100) NULL,
 	[arguments] [ntext] NULL CONSTRAINT [DF_executiontask_arguments]  DEFAULT (NULL),
-	[numberOfRetries] int NOT NULL DEFAULT(0),
+	[numberOfRetries] [int] NOT NULL DEFAULT ((0)),
  CONSTRAINT [PK_executiontask] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -216,7 +215,28 @@ CREATE TABLE [dbo].[executiontask](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[job]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[healthCounter]    Script Date: 30-01-2018 11:07:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[healthCounter](
+	[id] [varchar](50) NOT NULL,
+	[timestamp] [datetime] NOT NULL,
+	[count] [int] NOT NULL,
+	[message] [nvarchar](260) NULL,
+ CONSTRAINT [PK_healthCounter] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[job]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -240,7 +260,7 @@ CREATE TABLE [dbo].[job](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[job_essence]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[job_essence]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -257,7 +277,7 @@ CREATE TABLE [dbo].[job_essence](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[jobEssenceType]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[jobEssenceType]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -272,12 +292,12 @@ CREATE TABLE [dbo].[jobEssenceType](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[log]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[log]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-SET ANSI_PADDING OFF
+SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[log](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -297,7 +317,7 @@ CREATE TABLE [dbo].[log](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[semaphore]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[semaphore]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +338,7 @@ CREATE TABLE [dbo].[semaphore](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[stateFormat]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Table [dbo].[stateFormat]    Script Date: 30-01-2018 11:07:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -333,28 +353,49 @@ CREATE TABLE [dbo].[stateFormat](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Index [IX_attachment]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Index [IX_attachment]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_attachment] ON [dbo].[attachment]
 (
 	[essence_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_essenceFile]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Index [IX_essence_stateFormat]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_essence_stateFormat] ON [dbo].[essence]
+(
+	[stateFormat] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_essenceFile]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_essenceFile] ON [dbo].[essenceFile]
 (
 	[essence_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_exeTask]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Index [IX_exeTask]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_exeTask] ON [dbo].[execution_essence]
 (
 	[executiontask_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+/****** Object:  Index [IX_executionPlan_currentEssence_Id]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_executionPlan_currentEssence_Id] ON [dbo].[executionPlan]
+(
+	[currentEssence_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_planState]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Index [IX_executionPlan_urn]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_executionPlan_urn] ON [dbo].[executionPlan]
+(
+	[urn] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+
+GO
+/****** Object:  Index [IX_planState]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_planState] ON [dbo].[executionPlan]
 (
 	[executionState] ASC
@@ -364,26 +405,66 @@ INCLUDE ( 	[urn],
 	[jobId],
 	[activeTaskIndex]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-
-CREATE NONCLUSTERED INDEX [IX_modified] ON [dbo].[job]
-(
-	[modified] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+SET ANSI_PADDING ON
 
 GO
-
+/****** Object:  Index [_dta_index_executiontask_14_1365579903__K8_K1_2_3_4_5_6_7_9_10_12]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_executiontask_Plan_include] ON [dbo].[executiontask]
+(
+	[executionPlan_Id] ASC,
+	[Id] ASC
+)
+INCLUDE ( 	[urn],
+	[startTime],
+	[endTime],
+	[estimation],
+	[executionState],
+	[pluginUrn],
+	[sortOrder],
+	[foreignKey],
+	[numberOfRetries]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_executiontask_executionPlan_Id]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_executiontask_executionPlan_Id] ON [dbo].[executiontask]
+(
+	[executionPlan_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_issued]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_issued] ON [dbo].[job]
 (
 	[issued] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
-
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-
-/****** Object:  Index [IX_log_date]    Script Date: 20-09-2016 14:02:35 ******/
+/****** Object:  Index [IX_modified]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_modified] ON [dbo].[job]
+(
+	[modified] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_log_date]    Script Date: 30-01-2018 11:07:30 ******/
 CREATE NONCLUSTERED INDEX [IX_log_date] ON [dbo].[log]
 (
 	[Date] DESC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+
+GO
+/****** Object:  Index [IX_log_date_level]    Script Date: 30-01-2018 11:07:30 ******/
+CREATE NONCLUSTERED INDEX [IX_log_date_level] ON [dbo].[log]
+(
+	[Date] DESC,
+	[Level] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  FullTextIndex     Script Date: 30-01-2018 11:07:30 ******/
+CREATE FULLTEXT INDEX ON [dbo].[log](
+[Message] LANGUAGE 'English')
+KEY INDEX [PK_log]ON ([logMessage], FILEGROUP [PRIMARY])
+WITH (CHANGE_TRACKING = AUTO, STOPLIST = SYSTEM)
+
+
 GO
 ALTER TABLE [dbo].[attachment]  WITH CHECK ADD  CONSTRAINT [FK_attachment_attachmentType] FOREIGN KEY([attachmentType])
 REFERENCES [dbo].[attachmentType] ([id])
@@ -468,37 +549,6 @@ REFERENCES [dbo].[jobEssenceType] ([id])
 GO
 ALTER TABLE [dbo].[job_essence] CHECK CONSTRAINT [FK_job_essence_jobEssenceType]
 GO
-
-
-/****** Object:  Table [dbo].[healthCounter]    Script Date: 30-03-2017 15:03:50 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-SET ANSI_PADDING ON
-GO
-
-CREATE TABLE [dbo].[healthCounter](
-	[id] [varchar](50) NOT NULL,
-	[timestamp] [datetime] NOT NULL,
-	[count] [int] NOT NULL,
-	[message] [nvarchar](260) NULL,
- CONSTRAINT [PK_healthCounter] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
-
-
-
-
 /****** Object:  Login [nunit]    Script Date: 20-09-2016 14:05:29 ******/
 USE [master]
 GO
